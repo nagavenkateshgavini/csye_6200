@@ -3,10 +3,19 @@ package edu.northeastern.csye6200;
 import java.util.Scanner;
 
 public class LAB3_P1 {
+	private static final int CARD_MIN_CHAR=13;
+	private static final int CARD_MAX_CHAR=16;
+	
+	private static final String VISA_START_CHAR="4";
+	private static final String MASTER_START_CHAR="5";
+	private static final String AM_EXPRESS_START_CHAR="37";
+	private static final String DISCOVER_START_CHAR="6";
+
+
 	public static void main(String[] args) {
 		long cardNumber = 0;
 		try (Scanner scanner = new Scanner(System.in)) {
-			System.out.println("Enter a credit card number as a long integer:");
+			System.out.print("Enter a credit card number as a long integer:");
 			
 			cardNumber = scanner.nextLong();
 		}
@@ -18,25 +27,26 @@ public class LAB3_P1 {
 		boolean isvalid = isValid(cardNumber);
 		
 		if(isvalid==true) {
-			System.out.println(cardNumber + "is valid");
+			System.out.println(cardNumber + " is valid");
 		}
 		else {
-			System.out.println(cardNumber + "is invalid");
+			System.out.println(cardNumber + " is invalid");
 		}
 	}
 
 	/** Return true if the card number is valid */
 	public static boolean isValid(long number) {	
-		// Check if the card number is in between 13 and 16 numbers
 		int size = getSize(number);
-		if(size > 16 && size <13) {
+		if(size > CARD_MAX_CHAR && size <CARD_MIN_CHAR) {
 			return false;
 		}
 		
 		// Check whether the card starts with 4, 5, 37, 6
 		String cardNumberInString = String.valueOf(number);
-		if((cardNumberInString.startsWith("4") || cardNumberInString.startsWith("5") 
-				|| cardNumberInString.startsWith("37") || cardNumberInString.startsWith("6")) != true) {
+		if((cardNumberInString.startsWith(VISA_START_CHAR)
+				|| cardNumberInString.startsWith(MASTER_START_CHAR) 
+				|| cardNumberInString.startsWith(AM_EXPRESS_START_CHAR)
+				|| cardNumberInString.startsWith(DISCOVER_START_CHAR)) != true) {
 			return false;
 		}
 		
@@ -67,9 +77,8 @@ public class LAB3_P1 {
 	
 	public static String getStringReversal(String cardNumberInString) {
 		String finalStr="";
-	    char ch;
-        for (int i=0; i<cardNumberInString.length(); i++)
-        {
+		char ch;
+        for (int i=0; i<cardNumberInString.length(); i++) {
         	ch = cardNumberInString.charAt(i); 
         	finalStr = ch+finalStr; 
         }
