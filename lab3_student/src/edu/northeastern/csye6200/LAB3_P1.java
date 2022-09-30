@@ -78,11 +78,11 @@ public class LAB3_P1 {
 	public static String getStringReversal(String cardNumberInString) {
 		String finalStr="";
 		char ch;
-        for (int i=0; i<cardNumberInString.length(); i++) {
-        	ch = cardNumberInString.charAt(i); 
-        	finalStr = ch+finalStr; 
-        }
-        return finalStr;
+		for (int i=0; i<cardNumberInString.length(); i++) {
+			ch = cardNumberInString.charAt(i); 
+			finalStr = ch+finalStr; 
+			}
+		return finalStr;
 	}
 
 	/** Get the result from Step 2 */
